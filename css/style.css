@@ -666,7 +666,7 @@ $grey: #999;
 .contact {
      padding: 90px 0px;
      font-family: Poppins;
-     background: url(../images/contact_bg.jpg);
+     background: url(../images/background.jpg);
      background-repeat: no-repeat;
      background-size: cover;
 }
@@ -674,6 +674,10 @@ $grey: #999;
 .main_form {
      background: #ffffff;
      padding: 55px 40px;
+     border-radius: 9px;
+     -webkit-box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
+-moz-box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
+box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
 }
 
 
@@ -707,7 +711,7 @@ $grey: #999;
 .contact .main_form .send {
      font-size: 16px;
      transition: ease-in all 0.5s;
-     background-color: #078a8e;
+     background-color: #F3245E;
      color: #fff;
      padding: 12px 70px;
      margin: 0 auto;
@@ -715,7 +719,7 @@ $grey: #999;
 }
 
 .contact .main_form .send:hover {
-     background-color: #078a8e;
+     background-color: #7f0b2c;
      transition: ease-in all 0.5s;
      color: #fff;
 }
@@ -775,7 +779,6 @@ $grey: #999;
 .footer {
      padding: 20px 0px;
      background: #fff;
-     height: 99px;
 }
 
 .footer p {
