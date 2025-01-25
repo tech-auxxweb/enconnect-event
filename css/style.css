@@ -661,6 +661,7 @@ $grey: #999;
 .contact .titlepage {
      text-align: left;
      padding-top: 20px;
+     
 }
 
 .contact {
@@ -737,6 +738,7 @@ box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
 
 .white {
      color: #F83053;
+     font-size: 58px;
 }
 
 .cont {
@@ -747,7 +749,7 @@ box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
      color: #fff;
      font-size: 50px;
      line-height: 70px;
-     padding: 70px 0px 2px 0px;
+     padding: 20px 0px 55px 0px;
      display: inline-block;
      font-weight: 500;
 }
