@@ -73,7 +73,7 @@
                         <div class="col-sm-12">
                            <label for="clientName">Full Name<span style="color: red;">*</span></label>
                            <input id="clientName" class="contactus" placeholder="Enter Full Name" type="text"
-                              name="clientName">
+                              name="fullName">
                            <small class="error-message" style="color: red; display: none;">Full Name is
                               required</small>
                         </div>
@@ -87,14 +87,14 @@
                         <div class="col-sm-12">
                            <label for="businessEmail"> Email<span style="color: red;">*</span></label>
                            <input id="businessEmail" class="contactus" placeholder="Enter  Email" type="email"
-                              name="businessEmail">
+                              name="email">
                            <small id="businessEmailError" class="error-message" style="color: red; display: none;">Valid
                                Email is required</small>
                         </div>
                         <div class="col-sm-12">
                            <label for="businessPhoneNumber">Phone Number<span style="color: red;">*</span></label>
                            <input id="businessPhoneNumber" class="contactus" placeholder="Enter Phone Number" type="tel"
-                              name="businessPhoneNumber">
+                              name="phoneNumber">
                            <small id="businessPhoneNumberError" class="error-message"
                               style="color: red; display: none;">Valid Phone Number is required</small>
                         </div>
@@ -210,7 +210,7 @@
          });
       </script>
       <script>$(document).ready(function () {
-            $('#client').on('submit', function (e) {
+            $('#client').on('submit', async function (e) {
                e.preventDefault(); // Prevent the form from submitting the traditional way
 
                const fields = [
@@ -249,15 +249,67 @@
                const rsubmitButton = document.getElementById('rs-btn');
                const rloadingButton = document.getElementById('rloading');
                const toast = document.getElementById('toast');
+               const previewImage = document.getElementById('preview');
 
                // Show the loading spinner and hide the submit button
                if (rsubmitButton) rsubmitButton.style.display = 'none';
                if (rloadingButton) rloadingButton.style.display = 'block';
 
+
+               //////////////////////////////////
+
+               const fileInput = document.getElementById("image");
+      const file = fileInput.files[0];
+      if (!file) {
+         if (toast) {
+                        toast.classList.add('show');
+                        toast.style.backgroundColor = '#dc3545'; // Red for error
+                        toast.textContent = 'Please select an image to upload.';
+                        setTimeout(function () {
+                           toast.classList.remove('show');
+                        }, 3000);
+                     }
+        return;
+      }
+
+      const cloudName = "djfmmfwtx"; // Replace with your Cloudinary cloud name
+      const uploadPreset = "ml_default"; // Replace with your Cloudinary upload preset
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", uploadPreset);
+
+      let image=""
+
+      try {
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        const imageUrl = data.secure_url;
+        image=imageUrl
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        if (toast) {
+                        toast.classList.add('show');
+                        toast.style.backgroundColor = '#dc3545'; // Red for error
+                        toast.textContent = 'An error occurred while uploading the image.';
+                        setTimeout(function () {
+                           toast.classList.remove('show');
+                        }, 3000);
+                     }
+      }
+    
+
+               //////////////////////////////
+
                // Perform the AJAX request
+               
                $.ajax({
-                  url: 'https://script.google.com/macros/s/AKfycbxkCT6cnJQrA37uFylMrcGEGlvuX-07EHMQPF0YY6UAknmlZtnYr1d3XBuDRSLVM6Dddw/exec',
-                  data: $('#client').serialize(),
+                  url: 'https://script.google.com/macros/s/AKfycbzSxgDKWZnq5uCNqNumV9RyPiQDCYHCD4nB84VHdf3kTnBSzAG3zjQm7HajJ-hzxP1i/exec ',
+                  data: $('#client').serialize() + '&image=' +`${encodeURIComponent(image)}`+ '&image-preview=' +`=IMAGE("${encodeURIComponent(image)}")` ,
                   method: 'post',
                   success: function (response) {
                      $('#client')[0].reset(); // Reset form fields
@@ -272,6 +324,7 @@
                      // Show the submit button again and hide the loading spinner
                      if (rsubmitButton) rsubmitButton.style.display = 'block';
                      if (rloadingButton) rloadingButton.style.display = 'none';
+                     previewImage.style.display = 'none';
 
                      // Reset field styles
                      fields.forEach((fieldId) => {
