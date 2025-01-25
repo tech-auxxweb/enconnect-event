@@ -664,7 +664,7 @@ $grey: #999;
 }
 
 .contact {
-     padding: 90px 0px;
+     padding: 28px 0 90px 0px;
      font-family: Poppins;
      background: url(../images/background.jpg);
      background-repeat: no-repeat;
@@ -747,7 +747,7 @@ box-shadow: 7px 5px 29px -8px rgba(0,0,0,0.81);
      color: #fff;
      font-size: 50px;
      line-height: 70px;
-     padding: 70px 0px 65px 0px;
+     padding: 70px 0px 2px 0px;
      display: inline-block;
      font-weight: 500;
 }
@@ -868,7 +868,20 @@ body .toast {
      padding: 10px;
      border-radius: 5px;
  }
-
+ .image-container {
+     display: flex;
+     justify-content: center; /* Centers the image horizontally */
+     align-items: center;    /* Centers the image vertically if needed */
+     text-align: center;
+     margin-top: 20px;       /* Optional: Adds space above the image */
+  }
+  
+  .responsive-image {
+     max-width: 100%;        /* Makes the image responsive */
+     height: auto;           /* Maintains the image's aspect ratio */
+     display: block;         /* Removes extra spacing for inline images */
+  }
+  
  
 
 /** end footer **/

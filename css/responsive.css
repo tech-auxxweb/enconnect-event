@@ -7,7 +7,7 @@
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .cont span {
-        padding: 49px 0px 65px 0px;
+        padding: 50px 0px 40px 0px;
     }
 }
 
@@ -18,7 +18,7 @@
     }
     .cont span {
         font-size: 48px;
-        padding: 50px 0px 65px 0px;
+        padding: 50px 0px 24px 0px;
     }
     .text-bg h1 {
         font-size: 41px;
